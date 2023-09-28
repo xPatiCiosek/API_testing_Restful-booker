@@ -8,14 +8,14 @@ import io.restassured.response.Response;
 public class RequestFactory {
 
 
-    private String access_token;
-
-    public String getAccess_token(){
-        return access_token;
-    }
-    public void setAccess_token(String newToken){
-        this.access_token = newToken;
-    }
+//    private String access_token;
+//
+//    public String getAccess_token(){
+//        return access_token;
+//    }
+//    public void setAccess_token(String newToken){
+//        this.access_token = newToken;
+//    }
 
 
 
@@ -26,20 +26,12 @@ public class RequestFactory {
     public RequestFactory(){
         restClient = new RestClient();
     }
-    public void createTokenPage(){
+    public void createToken(){
         String requestPayload = "{\n" +
                 "    \"username\" : \"admin\",\n" +
                 "    \"password\" : \"password123\"\n" +
                 "}";
-        //var access_token = restClient.SendPostRequest("auth", requestPayload).then().extract().path("token");
-
-        var response = restClient.SendPostRequest("auth", requestPayload);
-        String token = response.then().extract().path("token");
-        setAccess_token(token);
-        System.out.println("this is your token : " + access_token);
-
-        //return restClient.SendPostRequest("auth", requestPayload).then().extract().path("token");
-
+        restClient.SendTokenRequest("auth",requestPayload);
 
     }
     public Response getAllBookingsPage(){

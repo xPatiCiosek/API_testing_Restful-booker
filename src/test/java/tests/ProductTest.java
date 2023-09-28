@@ -14,11 +14,7 @@ public class ProductTest {
     @BeforeClass
     public void setUp(){
         requestFactory = new RequestFactory();
-        requestFactory.createTokenPage();
-    }
-    @Test
-    public void checkToken(){
-        requestFactory.getAccess_token();
+        requestFactory.createToken();
     }
     @Test
     public void goToHomePage(){
@@ -42,8 +38,7 @@ public class ProductTest {
                 "    \"additionalneeds\" : \"Breakfast\"\n" +
                 "}";
 
-        var response = requestFactory.addBooking(requestPayload).then().log().all().statusCode(200);
-        var id = response.extract().path("bookingid").toString();
+        requestFactory.addBooking(requestPayload).then().log().all().statusCode(200);
 
     }
 
