@@ -36,7 +36,7 @@ public class RestClient {
         return given().contentType(ContentType.JSON).when().body(requestPayload).post(uri);
     }
     public Response SendPutRequest(String uri, Object requestPayload){
-        return given().contentType(ContentType.JSON).when().body(requestPayload).put(uri);
+        return given().header("Cookie", "token="+ access_token).contentType(ContentType.JSON).when().body(requestPayload).put(uri);
     }
     public Response SendPatchRequest(String uri, Object requestPayload){
         return given().contentType(ContentType.JSON).when().body(requestPayload).patch(uri);
