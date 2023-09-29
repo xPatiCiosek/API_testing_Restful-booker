@@ -42,6 +42,6 @@ public class RestClient {
         return given().header("Cookie", "token="+ access_token).contentType(ContentType.JSON).when().body(requestPayload).patch(uri);
     }
     public Response SendDeleteRequest(String uri){
-        return given().when().delete(uri);
+        return given().header("Cookie", "token="+ access_token).when().delete(uri);
     }
 }
