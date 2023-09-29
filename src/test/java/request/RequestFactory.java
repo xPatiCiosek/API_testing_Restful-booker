@@ -50,5 +50,8 @@ public class RequestFactory {
     public Response partialUpdateBooking(String id,Object requestPayload){
         return restClient.SendPatchRequest("/booking/"+id,requestPayload);
     }
+    public Response deleteBooking(String id){
+        return restClient.SendDeleteRequest("/booking/"+id);
+    }
 
 }
