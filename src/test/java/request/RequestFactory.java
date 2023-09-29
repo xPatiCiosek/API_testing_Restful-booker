@@ -41,11 +41,14 @@ public class RequestFactory {
          //change to correct endpoint or create a var for it
          return restClient.SendGetRequest("/booking/"+id);
      }
-    public Response addBooking(String requestPayload){
+    public Response addBooking(Object requestPayload){
         return restClient.SendPostRequest("/booking",requestPayload);
     }
-    public Response updateBooking(String id,String requestPayload){
+    public Response updateBooking(String id,Object requestPayload){
         return restClient.SendPutRequest("/booking/"+id,requestPayload);
+    }
+    public Response partialUpdateBooking(String id,Object requestPayload){
+        return restClient.SendPatchRequest("/booking/"+id,requestPayload);
     }
 
 }
