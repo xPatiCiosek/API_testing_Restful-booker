@@ -1,0 +1,8 @@
+for future updates
+/resquest withot authrization
+/check if json response is what it should be. aasertions?
+/delete non existing booking
+/method for creating a booking then add multiple bookings at once
+/.get('/booking?firstname=Joe') - get booking by name etc.
+/'    responds with a 500 error when GET /booking with a bad date query string
+/
