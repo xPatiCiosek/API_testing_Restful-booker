@@ -4,6 +4,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import request.RequestFactory;
 
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProductTest {
 
@@ -15,11 +17,15 @@ public class ProductTest {
         requestFactory.createToken();
     }
     @Test
-    public void goToHomePage(){
+    public void healthCheck(){
+        requestFactory.checkIfPageIsRunning().then().statusCode(201);
+    }
+    @Test
+    public void goToBookingsPage(){
         requestFactory.getAllBookingsPage().then().log().all().statusCode(200);
     }
     @Test
-    public void goToUserPage(){
+    public void goToBooking(){
         requestFactory.getBookingWithIdPage("87").then().log().all().statusCode(200);
     }
     @Test
@@ -37,6 +43,7 @@ public class ProductTest {
                 "}";
 
         requestFactory.addBooking(requestPayload).then().log().all().statusCode(200);
+        //check if the response payload equals to expected
 
     }
     @Test
@@ -53,7 +60,7 @@ public class ProductTest {
                 "    \"additionalneeds\" : \"Breakfast\"\n" +
                 "}";
 
-        var response = requestFactory.addBooking(requestPayload).then().log().all().statusCode(200);
+        var response = requestFactory.addBooking(requestPayload).then().statusCode(200);
         var id = response.extract().path("bookingid").toString();
         String requestUpdatedPayload = "{\n" +
                 "    \"firstname\" : \"Joe\",\n" +
@@ -68,7 +75,6 @@ public class ProductTest {
                 "}";
 
         requestFactory.updateBooking(id,requestUpdatedPayload).then().log().all().statusCode(200);
-        requestFactory.getBookingWithIdPage(id).then().log().all();
     }
     @Test
     public void partialUpdate(){
@@ -84,7 +90,7 @@ public class ProductTest {
                 "    \"additionalneeds\" : \"Breakfast\"\n" +
                 "}";
 
-        var response = requestFactory.addBooking(requestPayload).then().log().all().statusCode(200);
+        var response = requestFactory.addBooking(requestPayload).then().statusCode(200);
         var id = response.extract().path("bookingid").toString();
 
         String requestUpdate = "{ \"firstname\" : \"James\",\n" +
