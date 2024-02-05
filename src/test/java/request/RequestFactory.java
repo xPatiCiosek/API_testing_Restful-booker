@@ -34,6 +34,9 @@ public class RequestFactory {
         restClient.SendTokenRequest("auth",requestPayload);
 
     }
+    public Response checkIfPageIsRunning(){
+        return restClient.SendGetRequest("/ping");
+    }
     public Response getAllBookingsPage(){
         return restClient.SendGetRequest("/booking");
     }
